@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>File APIでローカルファイルの情報取得してやんよ!!!デモページ02</title>
+<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+<p>テキストファイルを選択してください</p>
+	<input id="afile" type="file" multiple><br>
+	<br><textarea id="info"></textarea>
+
+    <script type="text/javascript">
+		$("#afile").onchange = function(evt){
+			var file = evt.target.files[0];
+			if(!file.type.match(/text/)){
+				alert('テキストファイルを' + '選んでください。');
+				return;
+			}
+			var reader = new FileReader();
+			reader.onload = function(evt){
+				$("#info").value = evt.target.result;
+			}
+
+			reader.readAsText(file, "Shift_JIS");
+		}
+
+		function $(id) {
+			return document.querySelector(id);
+		}
+
+	</script>
+    </body>
+</html>
