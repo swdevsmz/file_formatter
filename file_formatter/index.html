@@ -10,6 +10,7 @@
 <p>テキストファイルを選択してください</p>
 	<input id="afile" type="file" multiple><br>
 	<br><textarea id="info"></textarea>
+  <br><textarea id="convert"></textarea>
 
     <script type="text/javascript">
 		$("#afile").onchange = function(evt){
@@ -21,9 +22,12 @@
 			var reader = new FileReader();
 			reader.onload = function(evt){
 				$("#info").value = evt.target.result;
+        $("#convert").value = $("#info").value.replace("\"\"", "\"99999\"");
 			}
 
 			reader.readAsText(file, "Shift_JIS");
+
+
 		}
 
 		function $(id) {
